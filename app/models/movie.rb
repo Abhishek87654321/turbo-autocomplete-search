@@ -8,5 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Movie < ApplicationRecord
-    validates :title, presence: true
+    validates :title, presence: true, uniqueness: true
+    scope :filter_by_title, -> (title){ where('title LIKE ?', "%#{title}%")}
+       
 end
